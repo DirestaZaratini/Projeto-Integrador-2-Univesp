@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Concurso</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1>Cadastro de Concurso</h1>
+        <form method="POST">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="numero_processo">Número do Processo:</label>
+                <input type="text" id="numero_processo" name="numero_processo" placeholder="Exemplo: 01P-12345/2021 (d)" required>
+            </div>
+            <div class="form-group">
+                <label for="area_concurso">Área do Concurso:</label>
+                <input type="text" id="area_concurso" name="area_concurso" placeholder="Exemplo: Teoria Literária" required>
+            </div>
+            <div class="form-group">
+                <label for="orgao_realizador">Órgão Realizador:</label>
+                <input type="text" id="orgao_realizador" name="orgao_realizador" required>
+            </div>
+            <div class="form-group">
+                <label for="examinadores">Nomes dos Examinadores:</label>
+                {% for i in examinadores_range %}
+                    <input type="text" name="examinador_{{ forloop.counter }}" placeholder="Nome do Examinador {{ forloop.counter }}" required>
+                {% endfor %}
+            </div>
+            <div class="form-group">
+                <label for="numero_provas">Número de Provas:</label>
+                <input type="number" id="numero_provas" name="numero_provas" min="1" placeholder="Quantas provas houve no Concurso? Responda apenas o número" required>
+            </div>
+            <button type="submit" class="btn">Confirmar</button>
+        </form>
+    </div>
+</body>
+</html>

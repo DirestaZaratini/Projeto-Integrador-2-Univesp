@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Relatório de Classificação</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1>Relatório de Classificação Final</h1>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Candidato</th>
+                    <th>Pontuação Final</th>
+                    <th>Número de Indicações</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Suponha que você tenha uma lista de candidatos e pontuações no contexto -->
+                {% for candidato in candidatos %}
+                <tr>
+                    <td>{{ candidato.nome }}</td>
+                    <td>{{ candidato.pontuacao }}</td>
+                    <td>{{ candidato.indicacoes }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <button class="btn" onclick="location.href='{% url 'cadastro' %}'">Novo Cadastro</button>
+    </div>
+</body>
+</html>

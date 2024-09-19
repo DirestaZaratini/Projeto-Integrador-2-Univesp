@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Planilha de Notas</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1>Inserção de Notas</h1>
+        <div class="planilha-container">
+            <!-- Substitua o "GOOGLE_SHEET_EMBED_URL" pela URL de embed da planilha do Google Sheets -->
+            <iframe src="GOOGLE_SHEET_EMBED_URL" width="100%" height="600" frameborder="0"></iframe>
+        </div>
+        <button class="btn" onclick="location.href='{% url 'relatorio' concurso.id %}'">Gerar Relatório</button>
+    </div>
+</body>
+</html>

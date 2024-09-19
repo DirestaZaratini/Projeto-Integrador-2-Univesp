@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Provas</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1>Cadastro de Provas</h1>
+        <form method="POST">
+            {% csrf_token %}
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>Eliminatória?</th>
+                        <th>Peso</th>
+                        <th>Quantas pessoas realizaram a prova</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for prova in provas_list %}
+                    <tr>
+                        <td>
+                            <input type="text" name="nome_prova_{{ prova.id }}" placeholder="Nome da Prova {{ prova.id }}" required>
+                        </td>
+                        <td>
+                            <select name="eliminatoria_{{ prova.id }}" required>
+                                <option value="nao">Não</option>
+                                <option value="sim">Sim</option>
+                            </select>
+                        </td>
+                        <td>
+                            <input type="number" step="0.1" name="peso_{{ prova.id }}" placeholder="Exemplos: 2 ou 0,6 ou 1" required>
+                        </td>
+                        <td>
+                            <input type="number" name="num_pessoas_{{ prova.id }}" min="1" placeholder="Número de Pessoas" required>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <button type="submit" class="btn">Preencher planilha</button>
+        </form>
+    </div>
+</body>
+</html>
